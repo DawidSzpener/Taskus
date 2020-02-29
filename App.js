@@ -25,7 +25,7 @@ export default function App() {
         <Button title="ADD" onPress={addTaskHandler}/>
       </View>
       <View>
-        {taskList.map((task) => <Text>{task}</Text> )}
+        {taskList.map((task) => <Text key={task}>{task}</Text> )}
       </View>
     </View>
   );
