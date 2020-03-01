@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import Task from './components/Task';
 
 export default function App() {
   const [enteredTask, setEnteredTask] = useState('')
@@ -26,9 +27,7 @@ export default function App() {
       </View>
       <ScrollView>
         {taskList.map(task => (
-          <View key={task} style={styles.listElement}>
-            <Text>{task}</Text> 
-          </View>
+          <Task title={task}/>
         ))}
       </ScrollView>
     </View>
@@ -51,12 +50,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     margin: 5
-  },
-  listElement: {
-    padding: 10,
-    marginVertical: 5,
-    backgroundColor: 'grey',
-    borderColor: 'black',
-    borderWidth: 1
   }
 });
