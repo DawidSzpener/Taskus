@@ -1,11 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const Task = props => {
+  const highlightOnPress = () => {
+    console.log('should colour background green')
+  }
   return (
-    <View key={props.title} style={styles.listElement}>
-      <Text>{props.title}</Text> 
-    </View>
+    <TouchableOpacity onPress={highlightOnPress}>
+      <View key={props.title} style={styles.listElement}>
+        <Text>{props.title}</Text> 
+      </View>
+    </TouchableOpacity>
   )}
 
 const styles = StyleSheet.create({
@@ -15,7 +20,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     borderColor: 'black',
     borderWidth: 1
+  },
+  completedListElement: {
+    padding: 10,
+    marginVertical: 5,
+    backgroundColor: 'green',
+    borderColor: 'black',
+    borderWidth: 1
   }
+
 })
 
 export default Task
