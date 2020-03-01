@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import Task from './components/Task';
+import TaskInput from './components/TaskInput'
 
 export default function App() {
-  const [enteredTask, setEnteredTask] = useState('')
   const [taskList, setTaskList] = useState([])
 
-
-  function taskInputHandler(enteredText) {
-    setEnteredTask(enteredText)
-  }
-
-  function addTaskHandler() {
-    setTaskList([...taskList, enteredTask])
+  function addTaskHandler(TaskTitle) {
+    setTaskList([...taskList, TaskTitle])
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder='Set Task'
-          style={styles.textInput}
-          onChangeText={taskInputHandler}
-          value={enteredTask}/>
-        <Button title="ADD" onPress={addTaskHandler}/>
-      </View>
+      <TaskInput onAddTask={addTaskHandler}/>
       <ScrollView>
         {taskList.map(task => (
           <Task title={task}/>
@@ -41,14 +29,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  inputContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  textInput: {
-    borderWidth: 1,
-    padding: 10,
-    margin: 5
-  }
 });
