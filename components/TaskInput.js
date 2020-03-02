@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Button, StyleSheet, TextInput } from 'react-native'
+import { View, Button, StyleSheet, TextInput, Modal } from 'react-native'
 
 
 const TaskInput = props => {
@@ -9,22 +9,35 @@ const TaskInput = props => {
     setEnteredTask(enteredText)
   }
 
+  const addTaskHandler = () => {
+    props.onAddTask(enteredTask)
+    setEnteredTask('')
+  }
+
+  const cancelTaskAddingHandler = () => {
+    props.onCancel()
+    setEnteredTask('')
+  }
+
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder='Set Task'
-        style={styles.textInput}
-        onChangeText={taskInputHandler}
-        value={enteredTask}/>
-      <Button title="ADD" onPress={props.onAddTask.bind(this, enteredTask)}/>
-    </View>
+    <Modal animationType='slide' visible={props.visible}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder='Set Task'
+          style={styles.textInput}
+          onChangeText={taskInputHandler}
+          value={enteredTask}/>
+        <Button title="CANCEL" color='red' onPress={cancelTaskAddingHandler}/>
+        <Button title="ADD" onPress={addTaskHandler}/>
+      </View>
+    </Modal>
 )}
 
 const styles = StyleSheet.create({
   inputContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textInput: {
     borderWidth: 1,
