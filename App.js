@@ -29,7 +29,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button title="Add new task" onPress={ () => setIsAddMode(true)}/>
+      <View style={styles.button}>
+        <Button title="Add new task" onPress={ () => setIsAddMode(true)}/>
+      </View>
       <TaskInput
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
@@ -49,9 +51,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 150
   },
+  button: {
+    height: '80%',
+    flex: 1,
+    margin: 5
+  }
 });

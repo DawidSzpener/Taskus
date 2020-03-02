@@ -17,15 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     borderColor: 'black',
     borderWidth: 1
-  },
-  completedListElement: {
-    padding: 10,
-    marginVertical: 5,
-    backgroundColor: 'green',
-    borderColor: 'black',
-    borderWidth: 1
   }
-
 })
 
 export default Task
