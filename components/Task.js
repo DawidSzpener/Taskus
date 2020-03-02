@@ -2,11 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const Task = props => {
-  const highlightOnPress = () => {
-    console.log('should colour background green')
-  }
   return (
-    <TouchableOpacity onPress={highlightOnPress}>
+    <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
       <View id={props.title} style={styles.listElement}>
         <Text>{props.title}</Text> 
       </View>

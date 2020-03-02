@@ -12,6 +12,12 @@ export default function App() {
        { id: Math.random().toString(), value: taskTitle}])
   }
 
+  const deleteTaskHandler = goalId => {
+    setTaskList(taskList => {
+     return taskList.filter((goal) => goal.id !== goalId)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <TaskInput onAddTask={addTaskHandler}/>
@@ -19,7 +25,7 @@ export default function App() {
         keyExtractor={(item, index) => item.id}
         data={taskList}
         renderItem={itemData => (
-        <Task title={itemData.item.value}/>
+        <Task id={itemData.item.id} title={itemData.item.value} onDelete={deleteTaskHandler}/>
       )}/>
     </View>
   );
