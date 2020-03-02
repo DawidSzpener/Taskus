@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import Task from './components/Task';
 import TaskInput from './components/TaskInput'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
 
-  function addTaskHandler(TaskTitle) {
-    setTaskList([...taskList, TaskTitle])
+  const addTaskHandler = taskTitle => {
+    setTaskList(taskList => [
+      ...taskList,
+       { id: Math.random().toString(), value: taskTitle}])
   }
 
   return (
     <View style={styles.container}>
       <TaskInput onAddTask={addTaskHandler}/>
-      <ScrollView>
-        {taskList.map(task => (
-          <Task title={task}/>
-        ))}
-      </ScrollView>
+      <FlatList 
+        keyExtractor={(item, index) => item.id}
+        data={taskList}
+        renderItem={itemData => (
+        <Task title={itemData.item.value}/>
+      )}/>
     </View>
   );
 }

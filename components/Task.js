@@ -7,7 +7,7 @@ const Task = props => {
   }
   return (
     <TouchableOpacity onPress={highlightOnPress}>
-      <View key={props.title} style={styles.listElement}>
+      <View id={props.title} style={styles.listElement}>
         <Text>{props.title}</Text> 
       </View>
     </TouchableOpacity>
