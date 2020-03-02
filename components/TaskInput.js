@@ -27,8 +27,12 @@ const TaskInput = props => {
           style={styles.textInput}
           onChangeText={taskInputHandler}
           value={enteredTask}/>
-        <Button title="CANCEL" color='red' onPress={cancelTaskAddingHandler}/>
-        <Button title="ADD" onPress={addTaskHandler}/>
+        <View style={styles.buttonContainer}>
+          <Button title="CANCEL" color='red' onPress={cancelTaskAddingHandler}/>
+          <View style={styles.button}>
+            <Button title="ADD" onPress={addTaskHandler}/>
+          </View>
+        </View>
       </View>
     </Modal>
 )}
@@ -41,8 +45,19 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
-    padding: 10,
+    padding: 5,
     margin: 5
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 5,
+    margin: 5
+  },
+  button: {
+    margin: 10
   }
 })
 
