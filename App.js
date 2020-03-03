@@ -30,11 +30,14 @@ export default function App() {
     setIsAddMode(false)
   }
 
+  const applyAddingTaskHandler = () => {
+    setIsAddMode(true)
+  }
+
   return (
     <View style={styles.container}>
-      <Header title="Tasker"/>
+      <Header title="Tasker" onAdd={applyAddingTaskHandler}/>
       <View style={styles.button}>
-        <Button title="Add new task" color={Colors.accept} onPress={ () => setIsAddMode(true)}/>
       </View>
       <TaskInput
         onCancel={cancelAddingTaskHandler}

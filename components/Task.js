@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import Colors from '../constants/Colors'
 
 const Task = props => {
   return (
@@ -15,7 +16,8 @@ const styles = StyleSheet.create({
     padding: 8
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
+    color: Colors.accent
   }
 })
 
