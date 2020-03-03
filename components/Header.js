@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary
   },
   text: {
+    color: Colors.accent,
     fontSize: 30,
     fontWeight: 'bold',
     letterSpacing: 4,
