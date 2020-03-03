@@ -4,6 +4,7 @@ import Task from './components/Task';
 import TaskInput from './components/TaskInput'
 import Header from './components/Header'
 import Card from './components/Card'
+import Colors from './constants/Colors'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
@@ -33,7 +34,7 @@ export default function App() {
     <View style={styles.container}>
       <Header title="Tasker"/>
       <View style={styles.button}>
-        <Button title="Add new task" onPress={ () => setIsAddMode(true)}/>
+        <Button title="Add new task" color={Colors.accept} onPress={ () => setIsAddMode(true)}/>
       </View>
       <TaskInput
         onCancel={cancelAddingTaskHandler}
@@ -59,10 +60,13 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
+    justifyContent: "center",
     flex: 1,
     backgroundColor: '#fff'
   },
   button: {
+    width: '80%',
     margin: 15
   },
   cardContainer: {

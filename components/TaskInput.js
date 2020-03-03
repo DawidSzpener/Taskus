@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, Button, StyleSheet, TextInput, Modal } from 'react-native'
+import Colors from '../constants/Colors'
 
 
 const TaskInput = props => {
@@ -29,10 +30,10 @@ const TaskInput = props => {
           value={enteredTask}/>
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="CANCEL" color='red' onPress={cancelTaskAddingHandler}/>
+            <Button title="CANCEL" color={Colors.cancel} onPress={cancelTaskAddingHandler}/>
           </View>
           <View style={styles.button}>
-            <Button title="ADD" color='green' onPress={addTaskHandler}/>
+            <Button title="ADD" color={Colors.accept} onPress={addTaskHandler}/>
           </View>
         </View>
       </View>
