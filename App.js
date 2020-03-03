@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Button, Text } from 'react-native';
 import Task from './components/Task';
+import DailyTask from './components/Task';
 import TaskInput from './components/TaskInput'
+import DailyTaskInput from './components/TaskInput'
 import Header from './components/Header'
 import Card from './components/Card'
 import Colors from './constants/Colors'
