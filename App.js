@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList, Button, Text } from 'react-native';
 import Task from './components/Task';
 import TaskInput from './components/TaskInput'
 import Header from './components/Header'
+import Card from './components/Card'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
@@ -38,15 +39,20 @@ export default function App() {
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
         onAddTask={addTaskHandler}/>
+      
       <FlatList 
         keyExtractor={(item, index) => item.id}
         data={taskList}
         renderItem={itemData => (
-        <Task
-          id={itemData.item.id}
-          title={itemData.item.value}
-          onDelete={deleteTaskHandler}/>
-      )}/>
+          <View style={styles.cardContainer}>
+            <Card>
+              <Task
+                id={itemData.item.id}
+                title={itemData.item.value}
+                onDelete={deleteTaskHandler}/>
+            </Card>
+          </View>
+        )}/>
     </View>
   );
 }
@@ -58,5 +64,10 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 15
+  },
+  cardContainer: {
+    alignItems: 'center',
+    justifyContent: "center",
+    flex: 1
   }
 });

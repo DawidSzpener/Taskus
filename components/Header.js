@@ -4,7 +4,7 @@ import {  StyleSheet, Text, View } from 'react-native'
 const Header = props => {
   return (
   <View style={styles.headerContainer}>
-    <Text>{props.title}</Text>
+    <Text style={styles.text}>{props.title}</Text>
   </View>
   )
 }
@@ -17,6 +17,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'yellow'
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    letterSpacing: 4,
+    textTransform: 'uppercase',
+    fontFamily: ''
   }
 })
 
