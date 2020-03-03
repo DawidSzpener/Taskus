@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Button, Text } from 'react-native';
 import Task from './components/Task';
 import TaskInput from './components/TaskInput'
+import Header from './components/Header'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
@@ -29,6 +30,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Header title="Tasker"/>
       <View style={styles.button}>
         <Button title="Add new task" onPress={ () => setIsAddMode(true)}/>
       </View>
@@ -51,14 +53,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 150
+    flex: 1,
+    backgroundColor: '#fff'
   },
   button: {
-    height: '80%',
-    flex: 1,
-    margin: 5
+    margin: 15
   }
 });
