@@ -41,7 +41,7 @@ export default function App() {
   }
 
   const deleteDailyTaskHandler = goalId => {
-    setTaskList(dailyTaskList => {
+    setDailyTaskList(dailyTaskList => {
      return dailyTaskList.filter((goal) => goal.id !== goalId)
     })
   }
@@ -68,11 +68,11 @@ export default function App() {
       <View style={styles.button}>
       </View>
       <TaskInput
-        onCancel={cancelAddingDailyTaskHandler}
+        onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
         onAddTask={addTaskHandler}/>
       <DailyTaskInput
-        onCancel={cancelAddingTaskHandler}
+        onCancel={cancelAddingDailyTaskHandler}
         visible={isDailyAddMode}
         onAddTask={addDailyTaskHandler}/>
       <FlatList 

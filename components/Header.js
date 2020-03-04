@@ -7,11 +7,16 @@ const Header = props => {
   const onAddingTask = () => {
     props.onAdd()
   }
+
+  const onAddingDailyTask = () => {
+    props.onDailyAdd()
+  }
+
   return (
   <View style={styles.headerContainer}>
     <Button title="New Task" color={Colors.accept} onPress={onAddingTask}/>
     <Text style={styles.text}>{props.title}</Text>
-    <Button title="New Daily" color={Colors.accept}/>
+    <Button title="New Daily" color={Colors.accept} onPress={onAddingDailyTask}/>
   </View>
   )
 }
