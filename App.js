@@ -101,7 +101,6 @@ export default function App() {
               )}/>
             </View>
         </View>
-
       <TaskInput
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
