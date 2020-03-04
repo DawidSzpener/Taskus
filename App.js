@@ -34,19 +34,7 @@ export default function App() {
        { key: Math.random().toString(), value: dailyTaskTitle}])
     setIsDailyAddMode(false)
   }
-
-  const deleteTaskHandler = taskKey => {
-    setTaskList(taskList => {
-      return taskList.filter((goal) => goal.key !== taskKey)
-    })
-  }
-
-  const deleteDailyTaskHandler = taskKey => {
-    setDailyTaskList(dailyTaskList => {
-      return dailyTaskList.filter((goal) => goal.key !== taskKey)
-    })
-  }
-
+  
   const cancelAddingTaskHandler = () => {
     setIsAddMode(false)
   }
@@ -102,13 +90,11 @@ export default function App() {
               data={dailyTaskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Animated.View>
-                    <Card>
-                      <DailyTask
-                        id={itemData.item.key}
-                        title={itemData.item.value}/>
-                    </Card>
-                  </Animated.View>
+                  <Card>
+                    <DailyTask
+                      id={itemData.item.key}
+                      title={itemData.item.value}/>
+                  </Card>
                 </View> 
               )}
               rightOpenValue={-Dimensions.get('window').width}
