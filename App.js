@@ -70,22 +70,10 @@ export default function App() {
 
   const onSwipeDailyTaskChange = swipeData => {
     const { key, value } = swipeData;
-    if (
-        value < -Dimensions.get('window').width &&
-        !this.animationIsRunning
-    ) {
-        this.animationIsRunning = true;
-        Animated.timing(rowTranslateAnimatedValues[key], {
-            toValue: 0,
-            duration: 200,
-        }).start(() => {
-          const newData = [...dailyTaskList];
-          const prevIndex = dailyTaskList.findIndex(item => item.key === key);
-          newData.splice(prevIndex, 1);
-          setDailyTaskList(newData);
-          this.animationIsRunning = false;
-        });
-    }
+    const newData = [...dailyTaskList];
+    const prevIndex = dailyTaskList.findIndex(item => item.key === key);
+    setDailyTaskList(newData);
+    newData.splice(prevIndex, 1);
 };
 
   const onSwipeTaskChange = swipeData => {
