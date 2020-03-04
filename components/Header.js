@@ -14,9 +14,9 @@ const Header = props => {
 
   return (
   <View style={styles.headerContainer}>
-    <Button title="New Task" color={Colors.accept} onPress={onAddingTask}/>
-    <Text style={styles.text}>{props.title}</Text>
     <Button title="New Daily" color={Colors.accept} onPress={onAddingDailyTask}/>
+    <Text style={styles.text}>{props.title}</Text>
+    <Button title="New Task" color={Colors.accept} onPress={onAddingTask}/>
   </View>
   )
 }

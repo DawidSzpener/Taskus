@@ -40,7 +40,7 @@ export default function App() {
     })
   }
 
-  const completeDailyTaskHandler = goalId => {
+  const deleteDailyTaskHandler = goalId => {
     setDailyTaskList(dailyTaskList => {
       return dailyTaskList.filter((goal) => goal.id !== goalId)
     })
@@ -67,6 +67,41 @@ export default function App() {
       <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
       <View style={styles.button}>
       </View>
+        <View style={styles.flastListContainer}>
+          <View style={styles.taskContainer}>
+            <Text style={styles.text}>Daily</Text>
+            <FlatList 
+            keyExtractor={(item, index) => item.id}
+            data={dailyTaskList}
+            renderItem={itemData => (
+              <View style={styles.cardContainer}>
+                <Card dailyTaskState={Colors.primary}>
+                  <DailyTask
+                    id={itemData.item.id}
+                    title={itemData.item.value}
+                    onDelete={deleteDailyTaskHandler}/>
+                </Card>
+              </View>
+            )}/>
+          </View>
+          <View style={styles.taskContainer}>
+            <Text style={styles.text}>Tasks</Text>
+            <FlatList 
+              keyExtractor={(item, index) => item.id}
+              data={taskList}
+              renderItem={itemData => (
+                <View style={styles.cardContainer}>
+                  <Card>
+                    <Task
+                      id={itemData.item.id}
+                      title={itemData.item.value}
+                      onDelete={deleteTaskHandler}/>
+                  </Card>
+                </View>
+              )}/>
+            </View>
+        </View>
+
       <TaskInput
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
@@ -75,32 +110,6 @@ export default function App() {
         onCancel={cancelAddingDailyTaskHandler}
         visible={isDailyAddMode}
         onAddTask={addDailyTaskHandler}/>
-      <FlatList 
-      keyExtractor={(item, index) => item.id}
-      data={dailyTaskList}
-      renderItem={itemData => (
-        <View style={styles.cardContainer}>
-          <Card dailyTaskState={Colors.primary}>
-            <DailyTask
-              id={itemData.item.id}
-              title={itemData.item.value}
-              onDelete={completeDailyTaskHandler}/>
-          </Card>
-        </View>
-      )}/>
-      <FlatList 
-        keyExtractor={(item, index) => item.id}
-        data={taskList}
-        renderItem={itemData => (
-          <View style={styles.cardContainer}>
-            <Card>
-              <Task
-                id={itemData.item.id}
-                title={itemData.item.value}
-                onDelete={deleteTaskHandler}/>
-            </Card>
-          </View>
-        )}/>
     </View>
   );
 }
@@ -120,5 +129,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: "center",
     flex: 1
+  },
+  flastListContainer: {
+    alignItems: 'center',
+    justifyContent: "center",
+    flex: 1,
+    flexDirection: 'row'
+  },
+  taskContainer: {
+    alignItems: 'center',
+    justifyContent: "center",
+    flex: 1,
+  },
+  text: {
+    color: Colors.accent,
+    fontSize: 30,
+    fontWeight: 'bold',
+    letterSpacing: 4,
+    textTransform: 'uppercase',
+    fontFamily: ''
   }
 });
