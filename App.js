@@ -73,7 +73,9 @@ export default function App() {
     const { key, value } = swipeData;
     const newData = [...dailyTaskList];
     const prevIndex = dailyTaskList.findIndex(item => item.key === key);
-    setDailyTaskList(newData)
+    setTimeout(() => {
+      setDailyTaskList(newData)
+    }, 500)
     newData.splice(prevIndex, 1)
 };
 
