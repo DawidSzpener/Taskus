@@ -11,4 +11,14 @@ const DailyTask = () => {
     </TouchableOpacity>
   )}
 
+  const styles = StyleSheet.create({
+    listElement: {
+      padding: 8
+    },
+    text: {
+      fontSize: 20,
+      color: Colors.accent
+    }
+  })
+
 export default DailyTask
