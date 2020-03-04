@@ -10,6 +10,7 @@ import Colors from './constants/Colors'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
+  const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
 
   const addTaskHandler = taskTitle => {
@@ -25,6 +26,12 @@ export default function App() {
   const deleteTaskHandler = goalId => {
     setTaskList(taskList => {
      return taskList.filter((goal) => goal.id !== goalId)
+    })
+  }
+
+  const deleteDailyTaskHandler = goalId => {
+    setTaskList(dailyTaskList => {
+     return dailyTaskList.filter((goal) => goal.id !== goalId)
     })
   }
 
@@ -45,7 +52,19 @@ export default function App() {
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
         onAddTask={addTaskHandler}/>
-      
+      <FlatList 
+      keyExtractor={(item, index) => item.id}
+      data={dailyTaskList}
+      renderItem={itemData => (
+        <View style={styles.cardContainer}>
+          <Card>
+            <DailyTask
+              id={itemData.item.id}
+              title={itemData.item.value}
+              onDelete={deleteDailyTaskHandler}/>
+          </Card>
+        </View>
+      )}/>
       <FlatList 
         keyExtractor={(item, index) => item.id}
         data={taskList}
