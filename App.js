@@ -75,7 +75,7 @@ export default function App() {
     const prevIndex = dailyTaskList.findIndex(item => item.key === key);
     setTimeout(() => {
       setDailyTaskList(newData)
-    }, 500)
+    }, 300)
     newData.splice(prevIndex, 1)
 };
 
@@ -85,7 +85,7 @@ export default function App() {
     const prevIndex = taskList.findIndex(item => item.key === key);
     setTimeout(() => {
       setTaskList(newData)
-    }, 500)
+    }, 300)
     newData.splice(prevIndex, 1);
   };
 
@@ -103,11 +103,10 @@ export default function App() {
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
                   <Animated.View>
-                    <Card dailyTaskState={Colors.primary}>
+                    <Card>
                       <DailyTask
                         id={itemData.item.key}
-                        title={itemData.item.value}
-                        onDelete={deleteDailyTaskHandler}/>
+                        title={itemData.item.value}/>
                     </Card>
                   </Animated.View>
                 </View> 
@@ -123,11 +122,10 @@ export default function App() {
               data={taskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Card dailyTaskState={Colors.primary}>
-                    <DailyTask
+                  <Card>
+                    <Task
                       id={itemData.item.key}
-                      title={itemData.item.value}
-                      onDelete={deleteTaskHandler}/>
+                      title={itemData.item.value}/>
                   </Card>
                 </View>
               )}

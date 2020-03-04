@@ -1,14 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Colors from '../constants/Colors'
 
 const Task = props => {
   return (
-    <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
-      <View id={props.title} style={styles.listElement}>
-        <Text style={styles.text}>{props.title}</Text> 
-      </View>
-    </TouchableOpacity>
+    <View id={props.title} style={styles.listElement}>
+      <Text style={styles.text}>{props.title}</Text> 
+    </View>
   )}
 
 const styles = StyleSheet.create({

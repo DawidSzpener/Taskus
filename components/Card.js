@@ -1,10 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import Colors from '../constants/Colors'
 
 const Card = props => {
   return (
-  <View style={styles.card}>{props.children}</View>
+  <TouchableOpacity>
+    <View style={styles.card}>{props.children}</View>
+  </TouchableOpacity>
   )
 }
 
