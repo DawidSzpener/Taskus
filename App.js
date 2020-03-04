@@ -69,18 +69,21 @@ export default function App() {
   );
 
   const onSwipeDailyTaskChange = swipeData => {
+    
     const { key, value } = swipeData;
     const newData = [...dailyTaskList];
     const prevIndex = dailyTaskList.findIndex(item => item.key === key);
-    setDailyTaskList(newData);
-    newData.splice(prevIndex, 1);
+    setDailyTaskList(newData)
+    newData.splice(prevIndex, 1)
 };
 
   const onSwipeTaskChange = swipeData => {
     const { key, value } = swipeData;
     const newData = [...taskList];
     const prevIndex = taskList.findIndex(item => item.key === key);
-    setTaskList(newData);
+    setTimeout(() => {
+      setTaskList(newData)
+    }, 500)
     newData.splice(prevIndex, 1);
   };
 
@@ -97,12 +100,14 @@ export default function App() {
               data={dailyTaskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Card dailyTaskState={Colors.primary}>
-                    <DailyTask
-                      id={itemData.item.key}
-                      title={itemData.item.value}
-                      onDelete={deleteDailyTaskHandler}/>
-                  </Card>
+                  <Animated.View>
+                    <Card dailyTaskState={Colors.primary}>
+                      <DailyTask
+                        id={itemData.item.key}
+                        title={itemData.item.value}
+                        onDelete={deleteDailyTaskHandler}/>
+                    </Card>
+                  </Animated.View>
                 </View> 
               )}
               rightOpenValue={-Dimensions.get('window').width}
