@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Button, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
 import Task from './components/Task';
 import DailyTask from './components/Task';
 import TaskInput from './components/TaskInput'
@@ -7,6 +7,7 @@ import DailyTaskInput from './components/TaskInput'
 import Header from './components/Header'
 import Card from './components/Card'
 import Colors from './constants/Colors'
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
@@ -62,6 +63,10 @@ export default function App() {
     setIsDailyAddMode(true)
   }
 
+  const onSwipeDailyTaskChange = goalId => {
+    
+};
+
   return (
     <View style={styles.container}>
       <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
@@ -70,36 +75,50 @@ export default function App() {
         <View style={styles.flastListContainer}>
           <View style={styles.taskContainer}>
             <Text style={styles.text}>Daily</Text>
-            <FlatList 
-            keyExtractor={(item, index) => item.id}
-            data={dailyTaskList}
-            renderItem={itemData => (
-              <View style={styles.cardContainer}>
-                <Card dailyTaskState={Colors.primary}>
-                  <DailyTask
-                    id={itemData.item.id}
-                    title={itemData.item.value}
-                    onDelete={deleteDailyTaskHandler}/>
-                </Card>
-              </View>
-            )}/>
+            <SwipeListView
+              data={dailyTaskList}
+              renderItem={itemData => (
+                <View style={styles.cardContainer}>
+                  <Card dailyTaskState={Colors.primary}>
+                    <DailyTask
+                      id={itemData.item.id}
+                      title={itemData.item.value}
+                      onDelete={deleteDailyTaskHandler}/>
+                  </Card>
+                </View>
+              )}
+              renderHiddenItem={itemData => (
+                <View>
+                </View>
+              )}
+              rightOpenValue={-Dimensions.get('window').width}
+              onSwipeValueChange={onSwipeDailyTaskChange}
+              disableRightSwipe
+              leftOpenValue={15}
+              rightOpenValue={-15}/>
           </View>
           <View style={styles.taskContainer}>
             <Text style={styles.text}>Tasks</Text>
-            <FlatList 
-              keyExtractor={(item, index) => item.id}
+            <SwipeListView
               data={taskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Card>
-                    <Task
+                  <Card dailyTaskState={Colors.primary}>
+                    <DailyTask
                       id={itemData.item.id}
                       title={itemData.item.value}
                       onDelete={deleteTaskHandler}/>
                   </Card>
                 </View>
-              )}/>
-            </View>
+              )}
+              renderHiddenItem={itemData => (
+                <View>
+                </View>
+              )}
+              leftOpenValue={15}
+              disableLeftSwipe
+              rightOpenValue={-15}/>
+          </View>
         </View>
       <TaskInput
         onCancel={cancelAddingTaskHandler}
