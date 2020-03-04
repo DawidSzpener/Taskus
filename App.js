@@ -12,6 +12,7 @@ export default function App() {
   const [taskList, setTaskList] = useState([])
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
+  const [isDailyAddMode, setIsDailyAddMode] = useState(false)
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
@@ -21,6 +22,16 @@ export default function App() {
       ...taskList,
        { id: Math.random().toString(), value: taskTitle}])
     setIsAddMode(false)
+  }
+
+  const addDailyTaskHandler = dailyTaskTitle => {
+    if(dailyTaskTitle.length === 0) {
+      return
+    }
+    setDailyTaskList(dailyTaskList => [
+      ...dailyTaskList,
+       { id: Math.random().toString(), value: dailyTaskTitle}])
+    setIsDailyAddMode(false)
   }
 
   const deleteTaskHandler = goalId => {
@@ -39,19 +50,31 @@ export default function App() {
     setIsAddMode(false)
   }
 
+  const cancelAddingDailyTaskHandler = () => {
+    setIsDailyAddMode(false)
+  }
+
   const applyAddingTaskHandler = () => {
     setIsAddMode(true)
   }
 
+  const applyAddingDailyTaskHandler = () => {
+    setIsDailyAddMode(true)
+  }
+
   return (
     <View style={styles.container}>
-      <Header title="Tasker" onAdd={applyAddingTaskHandler}/>
+      <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
       <View style={styles.button}>
       </View>
       <TaskInput
-        onCancel={cancelAddingTaskHandler}
+        onCancel={cancelAddingDailyTaskHandler}
         visible={isAddMode}
         onAddTask={addTaskHandler}/>
+      <DailyTaskInput
+        onCancel={cancelAddingTaskHandler}
+        visible={isDailyAddMode}
+        onAddTask={addDailyTaskHandler}/>
       <FlatList 
       keyExtractor={(item, index) => item.id}
       data={dailyTaskList}
