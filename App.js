@@ -88,25 +88,13 @@ export default function App() {
     }
 };
 
-const onSwipeTaskChange = swipeData => {
-  const { key, value } = swipeData;
-  if (
-      value < -Dimensions.get('window').width &&
-      !this.animationIsRunning
-  ) {
-      this.animationIsRunning = true;
-      Animated.timing(rowTranslateAnimatedValues[key], {
-          toValue: 0,
-          duration: 200,
-      }).start(() => {
-        const newData = [...taskList];
-        const prevIndex = taskList.findIndex(item => item.key === key);
-        newData.splice(prevIndex, 1);
-        setTaskList(newData);
-        this.animationIsRunning = false;
-      });
-  }
-};
+  const onSwipeTaskChange = swipeData => {
+    const { key, value } = swipeData;
+    const newData = [...taskList];
+    const prevIndex = taskList.findIndex(item => item.key === key);
+    setTaskList(newData);
+    newData.splice(prevIndex, 1);
+  };
 
   return (
     <View style={styles.container}>
@@ -127,7 +115,7 @@ const onSwipeTaskChange = swipeData => {
                       title={itemData.item.value}
                       onDelete={deleteDailyTaskHandler}/>
                   </Card>
-                </View>
+                </View> 
               )}
               rightOpenValue={-Dimensions.get('window').width}
               onSwipeValueChange={onSwipeDailyTaskChange}
