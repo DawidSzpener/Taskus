@@ -63,7 +63,13 @@ export default function App() {
     setIsDailyAddMode(true)
   }
 
-  const onSwipeDailyTaskChange = goalId => {
+  const renderHiddenItem = () => (
+    <View>
+    </View>
+  );
+
+  const onSwipeDailyTaskChange = swipeData => {
+    const { key, value } = swipeData;
     if (
         value < -Dimensions.get('window').width &&
         !this.animationIsRunning
@@ -82,6 +88,26 @@ export default function App() {
     }
 };
 
+const onSwipeTaskChange = swipeData => {
+  const { key, value } = swipeData;
+  if (
+      value < -Dimensions.get('window').width &&
+      !this.animationIsRunning
+  ) {
+      this.animationIsRunning = true;
+      Animated.timing(rowTranslateAnimatedValues[key], {
+          toValue: 0,
+          duration: 200,
+      }).start(() => {
+        const newData = [...taskList];
+        const prevIndex = taskList.findIndex(item => item.key === key);
+        newData.splice(prevIndex, 1);
+        setTaskList(newData);
+        this.animationIsRunning = false;
+      });
+  }
+};
+
   return (
     <View style={styles.container}>
       <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
@@ -91,6 +117,7 @@ export default function App() {
           <View style={styles.taskContainer}>
             <Text style={styles.text}>Daily</Text>
             <SwipeListView
+              disableRightSwipe
               data={dailyTaskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
@@ -102,19 +129,14 @@ export default function App() {
                   </Card>
                 </View>
               )}
-              renderHiddenItem={itemData => (
-                <View>
-                </View>
-              )}
               rightOpenValue={-Dimensions.get('window').width}
               onSwipeValueChange={onSwipeDailyTaskChange}
-              disableRightSwipe
-              leftOpenValue={15}
-              rightOpenValue={-15}/>
+              renderHiddenItem={renderHiddenItem}/>
           </View>
           <View style={styles.taskContainer}>
             <Text style={styles.text}>Tasks</Text>
             <SwipeListView
+              disableLeftSwipe
               data={taskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
@@ -126,13 +148,9 @@ export default function App() {
                   </Card>
                 </View>
               )}
-              renderHiddenItem={itemData => (
-                <View>
-                </View>
-              )}
-              leftOpenValue={15}
-              disableLeftSwipe
-              rightOpenValue={-15}/>
+              onSwipeValueChange={onSwipeTaskChange}
+              rightOpenValue={-Dimensions.get('window').width}
+              renderHiddenItem={renderHiddenItem}/>
           </View>
         </View>
       <TaskInput
