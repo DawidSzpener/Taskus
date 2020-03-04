@@ -21,7 +21,7 @@ export default function App() {
     }
     setTaskList(taskList => [
       ...taskList,
-       { id: Math.random().toString(), value: taskTitle}])
+       { key: Math.random().toString(), value: taskTitle}])
     setIsAddMode(false)
   }
 
@@ -31,19 +31,19 @@ export default function App() {
     }
     setDailyTaskList(dailyTaskList => [
       ...dailyTaskList,
-       { id: Math.random().toString(), value: dailyTaskTitle}])
+       { key: Math.random().toString(), value: dailyTaskTitle}])
     setIsDailyAddMode(false)
   }
 
-  const deleteTaskHandler = goalId => {
+  const deleteTaskHandler = taskKey => {
     setTaskList(taskList => {
-      return taskList.filter((goal) => goal.id !== goalId)
+      return taskList.filter((goal) => goal.key !== taskKey)
     })
   }
 
-  const deleteDailyTaskHandler = goalId => {
+  const deleteDailyTaskHandler = taskKey => {
     setDailyTaskList(dailyTaskList => {
-      return dailyTaskList.filter((goal) => goal.id !== goalId)
+      return dailyTaskList.filter((goal) => goal.key !== taskKey)
     })
   }
 
@@ -123,7 +123,7 @@ const onSwipeTaskChange = swipeData => {
                 <View style={styles.cardContainer}>
                   <Card dailyTaskState={Colors.primary}>
                     <DailyTask
-                      id={itemData.item.id}
+                      id={itemData.item.key}
                       title={itemData.item.value}
                       onDelete={deleteDailyTaskHandler}/>
                   </Card>
@@ -142,7 +142,7 @@ const onSwipeTaskChange = swipeData => {
                 <View style={styles.cardContainer}>
                   <Card dailyTaskState={Colors.primary}>
                     <DailyTask
-                      id={itemData.item.id}
+                      id={itemData.item.key}
                       title={itemData.item.value}
                       onDelete={deleteTaskHandler}/>
                   </Card>
