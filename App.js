@@ -36,13 +36,13 @@ export default function App() {
 
   const deleteTaskHandler = goalId => {
     setTaskList(taskList => {
-     return taskList.filter((goal) => goal.id !== goalId)
+      return taskList.filter((goal) => goal.id !== goalId)
     })
   }
 
-  const deleteDailyTaskHandler = goalId => {
+  const completeDailyTaskHandler = goalId => {
     setDailyTaskList(dailyTaskList => {
-     return dailyTaskList.filter((goal) => goal.id !== goalId)
+      return dailyTaskList.filter((goal) => goal.id !== goalId)
     })
   }
 
@@ -80,11 +80,11 @@ export default function App() {
       data={dailyTaskList}
       renderItem={itemData => (
         <View style={styles.cardContainer}>
-          <Card>
+          <Card dailyTaskState={Colors.primary}>
             <DailyTask
               id={itemData.item.id}
               title={itemData.item.value}
-              onDelete={deleteDailyTaskHandler}/>
+              onDelete={completeDailyTaskHandler}/>
           </Card>
         </View>
       )}/>
