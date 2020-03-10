@@ -17,4 +17,16 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error:' + err))
 })
 
+router.route('/:id').get((req, res) => {
+  Dailys.findById(req.params.id)
+  .then(dailys => res.json(dailys))
+  .catch(err => res.status(400).json('Error: ' + err))
+})
+
+router.route('/:id').delete((req, res) => {
+  Dailys.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Daily deleted'))
+    .catch(err => res.status(400).json('Error: ' + err))
+})
+
 module.exports = router
