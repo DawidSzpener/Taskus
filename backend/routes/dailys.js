@@ -13,7 +13,7 @@ router.route('/add').post((req, res) => {
   const newDaily = new Dailys({text})
 
   newDaily.save()
-    .then(() => res.json('User added!'))
+    .then(() => res.json('Daily added!'))
     .catch(err => res.status(400).json('Error:' + err))
 })
 
