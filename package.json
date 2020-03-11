@@ -1,11 +1,12 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "(cd backend && npm run start) & npm run client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "client": "expo start"
   },
   "dependencies": {
     "axios": "^0.19.2",

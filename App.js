@@ -19,6 +19,7 @@ export default function App() {
     if(taskTitle.length === 0) {
       return
     }
+
     setTaskList(taskList => [
       ...taskList,
        { key: Math.random().toString(), value: taskTitle}])
