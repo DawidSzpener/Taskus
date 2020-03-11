@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Button, StyleSheet, TextInput, Modal } from 'react-native'
 import Colors from '../constants/Colors'
+import Axios from 'axios'
 
 
 const TaskInput = props => {
@@ -12,6 +13,10 @@ const TaskInput = props => {
 
   const addTaskHandler = () => {
     props.onAddTask(enteredTask)
+
+    Axios.post('http://localhost:4000/tasks/add', enteredTask)
+      .then(res => console.log(res.data))
+
     setEnteredTask('')
   }
 
