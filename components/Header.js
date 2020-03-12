@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.primary
   },
+    button: {
+      marginBottom: 10
+    },
   text: {
     color: Colors.accent,
     fontSize: 50,
