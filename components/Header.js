@@ -8,10 +8,6 @@ const Header = props => {
     props.onAdd()
   }
 
-  const onAddingDailyTask = () => {
-    props.onDailyAdd()
-  }
-
   return (
   <View  style={styles.headerContainer}>
     <Text style={styles.text}>{props.title}</Text>

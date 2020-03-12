@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
@@ -8,11 +8,22 @@ import Header from './components/Header'
 import Card from './components/Card'
 import Colors from './constants/Colors'
 import { SwipeListView } from 'react-native-swipe-list-view';
+import axios from 'axios'
 
 export default function App() {
   const [taskList, setTaskList] = useState([])
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
+
+  // axios.get('http://localhost:5000/tasks/')
+  // .then(response => {
+  //   setTaskList(response.data)
+  // })
+
+  // axios.get('http://localhost:5000/dailys/')
+  // .then(response => {
+  //   setDailyTaskList(response.data)
+  // })
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
@@ -26,6 +37,7 @@ export default function App() {
   }
 
   const addDailyTaskHandler = dailyTaskTitle => {
+    console.log(dailyTaskList)
     if(dailyTaskTitle.length === 0) {
       return
     }
@@ -57,7 +69,7 @@ export default function App() {
       setDailyTaskList(newData)
     }, 300)
     newData.splice(prevIndex, 1)
-};
+  };
 
   const onSwipeTaskChange = swipeData => {
     const { key, value } = swipeData;

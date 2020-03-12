@@ -6,7 +6,6 @@ const dailysSchema = new Schema({
   text: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
     sparse : true,
     minlength: 3
