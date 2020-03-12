@@ -11,6 +11,15 @@ const DailyTaskInput = props => {
 
   const addDailyTaskHandler = () => {
     props.onAddDailyTask(enteredDailyTask)
+
+    const data = {
+      text: enteredDailyTask
+    }
+
+    axios.post("http://localhost:5000/dailys/add", data)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+
     setEnteredDailyTask('')
   }
 

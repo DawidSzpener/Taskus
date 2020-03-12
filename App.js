@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
 import DailyTask from './components/Task';
 import TaskInput from './components/TaskInput'
@@ -81,6 +82,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
+      <TaskInput
+        onCancel={cancelAddingTaskHandler}
+        visible={isAddMode}
+        onAddTask={addTaskHandler}/>
       <View style={styles.button}>
       </View>
         <View style={styles.flastListContainer}>
@@ -121,10 +126,6 @@ export default function App() {
               renderHiddenItem={renderHiddenItem}/>
           </View>
         </View>
-      <TaskInput
-        onCancel={cancelAddingTaskHandler}
-        visible={isAddMode}
-        onAddTask={addTaskHandler}/>
       <DailyTaskInput
         onCancel={cancelAddingDailyTaskHandler}
         visible={isDailyAddMode}

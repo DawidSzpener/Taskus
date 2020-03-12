@@ -20,7 +20,7 @@ const TaskInput = props => {
     }
 
     axios.post("http://localhost:5000/tasks/add", data)
-      .then(res => console.log(res))
+      .then(res => console.log(res.data))
       .catch(err => console.log(err))
 
     setEnteredTask('')

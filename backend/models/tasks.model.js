@@ -8,6 +8,7 @@ const tasksSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
+    sparse : true,
     minlength: 3
   },
 }, {
