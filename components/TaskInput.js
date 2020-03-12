@@ -15,13 +15,28 @@ const TaskInput = props => {
     e.preventDefault()
     props.onAddTask(enteredTask)
 
-    const data = {
+    const task = {
       text: enteredTask
     }
 
-    axios.post("http://localhost:5000/tasks/add", data)
+    axios.post("http://localhost:5000/tasks/add", task)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
+
+    setEnteredTask('')
+  }
+
+  const addDailyTaskHandler = (e) => {
+    e.preventDefault()
+    props.onAddDailyTask(enteredTask)
+
+    const daily = {
+      text: enteredTask
+    }
+
+    axios.post("http://localhost:5000/dailys/add", daily)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
 
     setEnteredTask('')
   }
@@ -44,7 +59,10 @@ const TaskInput = props => {
             <Button title="CANCEL" color={Colors.cancel} onPress={cancelTaskAddingHandler}/>
           </View>
           <View style={styles.button}>
-            <Button title="ADD" color={Colors.accept} onPress={addTaskHandler}/>
+            <Button title="ADD TASK" color={Colors.accept} onPress={addTaskHandler}/>
+          </View>
+          <View style={styles.button}>
+            <Button title="ADD DAILY" color={Colors.accept} onPress={addDailyTaskHandler}/>
           </View>
         </View>
       </View>

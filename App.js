@@ -4,7 +4,6 @@ import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
 import DailyTask from './components/Task';
 import TaskInput from './components/TaskInput'
-import DailyTaskInput from './components/TaskInput'
 import Header from './components/Header'
 import Card from './components/Card'
 import Colors from './constants/Colors'
@@ -14,7 +13,6 @@ export default function App() {
   const [taskList, setTaskList] = useState([])
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
-  const [isDailyAddMode, setIsDailyAddMode] = useState(false)
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
@@ -34,23 +32,15 @@ export default function App() {
     setDailyTaskList(dailyTaskList => [
       ...dailyTaskList,
        { key: Math.random().toString(), value: dailyTaskTitle}])
-    setIsDailyAddMode(false)
+    setIsAddMode(false)
   }
   
   const cancelAddingTaskHandler = () => {
     setIsAddMode(false)
   }
 
-  const cancelAddingDailyTaskHandler = () => {
-    setIsDailyAddMode(false)
-  }
-
   const applyAddingTaskHandler = () => {
     setIsAddMode(true)
-  }
-
-  const applyAddingDailyTaskHandler = () => {
-    setIsDailyAddMode(true)
   }
 
   const renderHiddenItem = () => (
@@ -81,11 +71,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header title="Tasker" onAdd={applyAddingTaskHandler} onDailyAdd={applyAddingDailyTaskHandler}/>
-      <TaskInput
-        onCancel={cancelAddingTaskHandler}
-        visible={isAddMode}
-        onAddTask={addTaskHandler}/>
+      <Header title="Tasker" onAdd={applyAddingTaskHandler}/>
       <View style={styles.button}>
       </View>
         <View style={styles.flastListContainer}>
@@ -126,10 +112,11 @@ export default function App() {
               renderHiddenItem={renderHiddenItem}/>
           </View>
         </View>
-      <DailyTaskInput
-        onCancel={cancelAddingDailyTaskHandler}
-        visible={isDailyAddMode}
-        onAddTask={addDailyTaskHandler}/>
+        <TaskInput
+        onCancel={cancelAddingTaskHandler}
+        visible={isAddMode}
+        onAddTask={addTaskHandler}
+        onAddDailyTask={addDailyTaskHandler}/>
     </View>
   );
 }

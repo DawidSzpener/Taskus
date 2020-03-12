@@ -13,28 +13,28 @@ const Header = props => {
   }
 
   return (
-  <View style={styles.headerContainer}>
-    <Button title="New Daily" color={Colors.accept} onPress={onAddingDailyTask}/>
+  <View  style={styles.headerContainer}>
     <Text style={styles.text}>{props.title}</Text>
-    <Button title="New Task" color={Colors.accept} onPress={onAddingTask}/>
+    <View style={styles.button}>
+      <Button title="New Task" color={Colors.accept} onPress={onAddingTask}/>
+    </View>
   </View>
   )
 }
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexDirection: 'row',
     width: '100%',
-    height: 110,
-    paddingTop: 36,
+    height: 140,
+    paddingTop: 46,
     paddingHorizontal: 20,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     backgroundColor: Colors.primary
   },
   text: {
     color: Colors.accent,
-    fontSize: 30,
+    fontSize: 50,
     fontWeight: 'bold',
     letterSpacing: 4,
     textTransform: 'uppercase',
