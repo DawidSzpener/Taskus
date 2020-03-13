@@ -15,15 +15,15 @@ export default function App() {
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
 
-  // axios.get('http://localhost:5000/tasks/')
-  // .then(response => {
-  //   setTaskList(response.data)
-  // })
+  axios.get('http://localhost:5000/tasks/')
+  .then(response => {
+    setTaskList(response.data)
+  })
 
-  // axios.get('http://localhost:5000/dailys/')
-  // .then(response => {
-  //   setDailyTaskList(response.data)
-  // })
+  axios.get('http://localhost:5000/dailys/')
+  .then(response => {
+    setDailyTaskList(response.data)
+  })
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
