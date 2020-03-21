@@ -15,15 +15,19 @@ export default function App() {
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
 
-  axios.get('http://localhost:5000/tasks/')
-  .then(response => {
-    setTaskList(response.data)
-  })
 
-  axios.get('http://localhost:5000/dailys/')
-  .then(response => {
-    setDailyTaskList(response.data)
-  })
+  const receivingData = () => {
+    axios.get('http://localhost:5000/tasks/')
+    .then(response => {
+      setTaskList(response.data)
+    })
+
+    axios.get('http://localhost:5000/dailys/')
+    .then(response => {
+      setDailyTaskList(response.data)
+    })
+    console.log("HELLO")
+  }
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
@@ -83,6 +87,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {receivingData()}
       <Header title="Tasker" onAdd={applyAddingTaskHandler}/>
       <View style={styles.button}>
       </View>
