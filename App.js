@@ -27,7 +27,7 @@ const App = () =>  {
     .then(response => {
       setDailyTaskList(response.data)
     })
-  })
+  }, [taskList, dailyTaskList])
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
