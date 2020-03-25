@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
@@ -16,8 +16,8 @@ const App = () =>  {
   const [isAddMode, setIsAddMode] = useState(false)
   const [cardColor, setCardColor] = useState(Colors.primary)
 
-
-  const receivingData = () => {
+  useEffect(() => {
+    console.log("Effect in effect?")
     axios.get('http://localhost:5000/tasks/')
     .then(response => {
       setTaskList(response.data)
@@ -27,7 +27,7 @@ const App = () =>  {
     .then(response => {
       setDailyTaskList(response.data)
     })
-  }
+  })
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
@@ -91,7 +91,6 @@ const App = () =>  {
 
   return (
     <View style={styles.container}>
-      {receivingData()}
       <Header title="Tasker" onAdd={applyAddingTaskHandler}/>
       <View style={styles.button}>
       </View>
