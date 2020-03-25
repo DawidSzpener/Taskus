@@ -10,10 +10,11 @@ import Colors from './constants/Colors'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import axios from 'axios'
 
-export default function App() {
+const App = () =>  {
   const [taskList, setTaskList] = useState([])
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
+  const [cardColor, setCardColor] = useState(Colors.primary)
 
 
   const receivingData = () => {
@@ -26,7 +27,6 @@ export default function App() {
     .then(response => {
       setDailyTaskList(response.data)
     })
-    console.log("HELLO")
   }
 
   const addTaskHandler = taskTitle => {
@@ -85,6 +85,10 @@ export default function App() {
     newData.splice(prevIndex, 1);
   };
 
+  const changeColor = () => {
+    setCardColor(Colors.greenCard)
+  }
+
   return (
     <View style={styles.container}>
       {receivingData()}
@@ -99,7 +103,7 @@ export default function App() {
               data={dailyTaskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Card>
+                  <Card press={changeColor} color={cardColor}>
                     <DailyTask
                       id={itemData.item.key}
                       title={itemData.item.value}/>
@@ -117,7 +121,7 @@ export default function App() {
               data={taskList}
               renderItem={itemData => (
                 <View style={styles.cardContainer}>
-                  <Card>
+                  <Card press={changeColor} color={cardColor}>
                     <Task
                       id={itemData.item.key}
                       title={itemData.item.value}/>
@@ -174,3 +178,5 @@ const styles = StyleSheet.create({
     fontFamily: ''
   }
 });
+
+export default App
