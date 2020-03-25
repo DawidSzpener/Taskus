@@ -17,17 +17,20 @@ const App = () =>  {
   const [cardColor, setCardColor] = useState(Colors.primary)
 
   useEffect(() => {
-    console.log("Effect in effect?")
+    console.log("Effect in tasks")
     axios.get('http://localhost:5000/tasks/')
     .then(response => {
       setTaskList(response.data)
     })
+  }, [taskList])
 
+  useEffect(() => {
+    console.log("Effect in dailys")
     axios.get('http://localhost:5000/dailys/')
     .then(response => {
       setDailyTaskList(response.data)
     })
-  }, [taskList, dailyTaskList])
+  }, [dailyTaskList])
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
