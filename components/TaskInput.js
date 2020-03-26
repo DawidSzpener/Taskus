@@ -50,6 +50,7 @@ const TaskInput = props => {
     <Modal animationType='slide' visible={props.visible}>
       <View style={styles.inputContainer}>
         <TextInput
+          ref={props.focus}
           placeholder='Set Task'
           style={styles.textInput}
           onChangeText={taskInputHandler}

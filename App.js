@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
@@ -15,6 +15,7 @@ const App = () =>  {
   const [dailyTaskList, setDailyTaskList] = useState([])
   const [isAddMode, setIsAddMode] = useState(false)
   const [cardColor, setCardColor] = useState(Colors.primary)
+  const modalInputRef = useRef(null)
 
   useEffect(() => {
     console.log("Effect in tasks")
@@ -60,6 +61,7 @@ const App = () =>  {
 
   const applyAddingTaskHandler = () => {
     setIsAddMode(true)
+    modalInputRef.current.focus()
   }
 
   const renderHiddenItem = () => (
@@ -136,6 +138,7 @@ const App = () =>  {
           </View>
         </View>
         <TaskInput
+        focus={modalInputRef}
         onCancel={cancelAddingTaskHandler}
         visible={isAddMode}
         onAddTask={addTaskHandler}
