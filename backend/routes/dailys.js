@@ -2,6 +2,7 @@ const router = require('express').Router()
 let Dailys = require('../models/dailys.model')
 
 router.route('/').get((req, res) => {
+  console.log("it works")
   Dailys.find()
     .then(dailys => res.json(dailys))
     .catch(err => res.status(400).json('Error: ' + err))
@@ -29,4 +30,4 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
-module.exports = router
+module.exports = router;

@@ -21,7 +21,9 @@ const App = () =>  {
     console.log("Effect in tasks")
     axios.get('http://localhost:5000/tasks/')
     .then(response => {
-      setTaskList(response.data)
+      // setTaskList(response.data)
+      console.log(response)
+      console.log("here above me")
     })
   }, [taskList])
 
@@ -30,6 +32,8 @@ const App = () =>  {
     axios.get('http://localhost:5000/dailys/')
     .then(response => {
       setDailyTaskList(response.data)
+      console.log(response)
+      console.log("here above me")
     })
   }, [dailyTaskList])
 
