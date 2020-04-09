@@ -19,11 +19,11 @@ const App = () =>  {
   useEffect(() => {
     axios.get('http://localhost:5000/tasks/')
       .then(response => {
-          const newTaskList = response.data.map(task => {
-            return task.text
-          })
-          setTaskList(newTaskList)
-          console.log(newTaskList)
+        const newTaskList = response.data.map(task => {
+          return { key: Math.random().toString() ,value: task.text }
+        })
+        setTaskList(newTaskList)
+        console.log(newTaskList)
       })
       .catch(err => {
         console.log(err)  
@@ -32,16 +32,16 @@ const App = () =>  {
 
   useEffect(() => {
     axios.get('http://localhost:5000/dailys/')
-    .then(response => {
-      const newDailysList = response.data.map(daily => {
-        return daily.text
+      .then(response => {
+        const newDailysList = response.data.map(daily => {
+          return { key: Math.random().toString(), value: daily.text}
+        })
+        setDailyTaskList(newDailysList)
+        console.log(newDailysList)
       })
-      setDailyTaskList(newDailysList)
-      console.log(newDailysList)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   const addTaskHandler = taskTitle => {
@@ -53,6 +53,7 @@ const App = () =>  {
       ...taskList,
        { key: Math.random().toString(), value: taskTitle}])
     setIsAddMode(false)
+    console.log(taskList)
   }
 
   const addDailyTaskHandler = dailyTaskTitle => {
