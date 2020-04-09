@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, FlatList, Button, Text, Animated, Dimensions, } from 'react-native';
-import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Task from './components/Task';
 import DailyTask from './components/Task';
 import TaskInput from './components/TaskInput'
@@ -18,22 +17,25 @@ const App = () =>  {
   const modalInputRef = useRef(null)
 
   useEffect(() => {
-    console.log("Effect in tasks")
     axios.get('http://localhost:5000/tasks/')
-    .then(response => {
-      // setTaskList(response.data)
-      console.log(response)
-      console.log("here above me")
-    })
+      .then(response => {
+          const oldTaskList = response
+          setTaskList(oldTaskList)
+          console.log(oldTaskList)
+      })
+      .catch(err => {
+        console.log(err)  
+      })
   }, [taskList])
 
   useEffect(() => {
-    console.log("Effect in dailys")
     axios.get('http://localhost:5000/dailys/')
     .then(response => {
-      setDailyTaskList(response.data)
-      console.log(response)
-      console.log("here above me")
+      const oldDaliysList = response
+      setDailyTaskList(oldDaliysList)
+    })
+    .catch(err => {
+      console.log(err)
     })
   }, [dailyTaskList])
 
