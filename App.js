@@ -19,25 +19,30 @@ const App = () =>  {
   useEffect(() => {
     axios.get('http://localhost:5000/tasks/')
       .then(response => {
-          const oldTaskList = response
-          setTaskList(oldTaskList)
-          console.log(oldTaskList)
+          const newTaskList = response.data.map(task => {
+            return task.text
+          })
+          setTaskList(newTaskList)
+          console.log(newTaskList)
       })
       .catch(err => {
         console.log(err)  
       })
-  }, [taskList])
+  }, [])
 
   useEffect(() => {
     axios.get('http://localhost:5000/dailys/')
     .then(response => {
-      const oldDaliysList = response
-      setDailyTaskList(oldDaliysList)
+      const newDailysList = response.data.map(daily => {
+        return daily.text
+      })
+      setDailyTaskList(newDailysList)
+      console.log(newDailysList)
     })
     .catch(err => {
       console.log(err)
     })
-  }, [dailyTaskList])
+  }, [])
 
   const addTaskHandler = taskTitle => {
     if(taskTitle.length === 0) {
