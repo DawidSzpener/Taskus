@@ -50,3 +50,11 @@ I want to be able to save notes
 ## Authors
 
 * **[Dawid Szpener](https://github.com/DawidSzpener)**
+
+## TO DO LIST 
+
+task history
+finish higlighting
+conditional rendering on task list 
+deleting from database 
+style

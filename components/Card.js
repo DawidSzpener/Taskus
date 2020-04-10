@@ -8,7 +8,7 @@ const Card = props => {
     card: {
       backgroundColor: props.color,
       width: 300,
-      maxWidth: '80%',
+      maxWidth: '100%',
       justifyContent: 'center',
       alignItems: 'center',
       shadowColor: 'black',

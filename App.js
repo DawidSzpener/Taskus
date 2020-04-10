@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     margin: 15
   },
   cardContainer: {
+    alignContent: 'center',
     alignItems: 'center',
     justifyContent: "center",
     flex: 1
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   taskContainer: {
+    alignContent: 'center',
     alignItems: 'center',
     justifyContent: "center",
     flex: 1,

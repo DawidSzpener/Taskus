@@ -11,6 +11,7 @@ const Task = props => {
 
 const styles = StyleSheet.create({
   listElement: {
+    alignContent: 'center',
     padding: 8
   },
   text: {
