@@ -96,6 +96,10 @@ const App = () =>  {
     const { key, value } = swipeData;
     const newData = [...taskList];
     const prevIndex = taskList.findIndex(item => item.key === key);
+    const item = taskList.find(item => item.key === key);
+    
+    axios.delete('http://localhost:5000/dailys/' + item.key)
+    
     setTimeout(() => {
       setTaskList(newData)
     }, 300)

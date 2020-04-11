@@ -55,6 +55,5 @@ I want to be able to save notes
 
 task history
 finish higlighting
-conditional rendering on task list 
-deleting from database 
+conditional rendering on task list
 style
