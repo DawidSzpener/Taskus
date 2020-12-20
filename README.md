@@ -22,21 +22,9 @@ To run the linter
 $ yarn run lint
 ```
 
-## User stories
+## DEMO
 
-```
-As a user
-So that I know what I need to do
-I want to add tasks
-
-As a user
-So I can build good habbits
-I want to add daily tasks
-
-As a user
-So I don't forget important things
-I want to be able to save notes
-```
+![demo](https://i.imgur.com/eZ6w0FT.gif)
 
 ## Built With
 
