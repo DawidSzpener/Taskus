@@ -41,7 +41,7 @@ $ yarn run lint
 
 ## TO DO LIST 
 
-task history
-finish higlighting
-conditional rendering on task list
-style
+- task history
+- finish highlighting
+- conditional rendering on task list
+- style
